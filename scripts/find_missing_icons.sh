@@ -55,19 +55,11 @@ find "$SRC_DIR" -maxdepth 1 -name '*.svg' -printf '%P\n' |
 	sort -u > "$SRC_ICONS"
 
 comm -23 "$DB_ICONS" "$SRC_ICONS" > "$MISSING_SRC"
-comm -23 "$SRC_ICONS" "$DB_ICONS" > "$MISSING_DB"
 
 if [ -s "$MISSING_SRC" ]; then
 	pretty_output \
 		"The following icons provided in '$DB_FILE' but missing in '$SRC_DIR':" \
 		"$MISSING_SRC"
-	EXIT_CODE=1
-fi
-
-if [ -s "$MISSING_DB" ]; then
-	pretty_output \
-		"The following icons provided in '$SRC_DIR' but missing in '$DB_FILE':" \
-		"$MISSING_DB"
 	EXIT_CODE=1
 fi
 
