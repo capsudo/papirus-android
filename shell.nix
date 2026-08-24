@@ -30,7 +30,7 @@ pkgs.mkShell {
   ANDROID_HOME = "${androidSdk.androidsdk}/libexec/android-sdk"; # Gradle: Android SDK path
   ANDROID_SDK_ROOT = "${androidSdk.androidsdk}/libexec/android-sdk"; # Gradle: Android SDK path
   JAVA_HOME = "${pkgs.jdk11_headless}"; # Gradle: Java 11 path
-
+  GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdk.androidsdk}/libexec/android-sdk/build-tools/30.0.2/aapt2"; # make gradle use nix provided AAPT2 resource compiler to prevent it from downloading its own which crashes on nix because it's RO
   shellHook = ''
     echo "Papirus Android build shell: run make build, then ./gradlew assembleDebug"
   '';
