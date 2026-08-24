@@ -8,8 +8,8 @@
 
 let
   androidSdk = pkgs.androidenv.composeAndroidPackages {
-    platformVersions = [ "31" ];
-    buildToolsVersions = [ "31.0.0" ];
+    platformVersions = [ "31" ]; # Android platform (API) the app compiles against and targets.
+    buildToolsVersions = [ "30.0.2" ]; # programs Gradle uses to compile/package the APK. v30 is compatible with the API 31 platform.
   };
 in
 pkgs.mkShell {
@@ -19,7 +19,7 @@ pkgs.mkShell {
     pkgs.findutils # update icons: find
     pkgs.diffutils #  # update icons: cmp
     pkgs.git #  # update icons: git clone/pull
-    androidSdk.androidsdk # build apk: Android API 31 and build tools 31.0.0
+    androidSdk.androidsdk # build apk: Android API 31 and build tools 30.0.2
     pkgs.inkscape # build apk: convert SVG icons to PNG files
     pkgs.jdk11_headless # build apk: Java version required by Gradle 7.0.2 and Android Gradle Plugin 7.0.4
     pkgs.gnumake # build apk: run Makefile to validate icons and generate Android XML files
