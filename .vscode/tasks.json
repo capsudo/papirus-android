@@ -9,6 +9,15 @@
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "Build debug APK",
+      "type": "shell",
+      "command": "make build && ./gradlew assembleDebug",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
     }
   ]
 }

@@ -43,6 +43,29 @@ Notes:
 - Existing icons that are not present in the update are not deleted.
 - A (shallow) checkout of papirus-icon-theme is storead in `.cache/`, so [papirus-icon-theme repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) is only cloned once on the first run, next runs only downloads new icon changes.
 
+# Build debug APK
+
+make build after changing icons or data.json; then run Gradle to create the APK.
+
+1. Build
+   ```bash
+    make build
+   ```
+   - checks data.json and SVG icon filenames;
+   - converts the SVG files in src/ into PNG files in app/src/main/res/drawable-nodpi/;
+   - generates appfilter.xml, which maps Android app activities from data.json to icon names;
+   - generates drawable.xml, the list of icons shown by the icon-pack app.
+
+2. Package
+   ```bash
+   ./gradlew assembleDebug
+   ```
+
+   takes those generated PNG/XML resources plus the Android app code and packages them into a debug APK, written in `app/build/outputs/apk/debug/`.
+
+
+Note: Nix shell is provided with dependencies: Java 11, Android API 31, Android build tools and the icon conversion tools.
+
 
 # Install
 You can [download icon pack](https://www.pling.com/p/1662847/) directly from the Android browser or download on PC and send to phone via KDE Connect/Send Anywhere/Android File Transfer or adb.
