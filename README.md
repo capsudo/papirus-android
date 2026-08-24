@@ -5,6 +5,14 @@
 # Papirus Icon Pack
 Popular Linux icon theme now on Android!
 
+# Fork
+
+This is a fork of [Papirus Android icon pack repo](https://github.com/PapirusDevelopmentTeam/papirus_icons/tree/master/scripts) which is outdated and not kept up to date with upstream [Papirus icon theme repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme).
+At time or writing last release [available on opendesktop.org](https://www.opendesktop.org/p/1662847/) is 20220220.
+
+This fork adds an update script that pulls icons from the upstream repo.
+
+
 # Supported Launchers:
 Below launchers have been tested to be working successfully with Papirus Icon among others. Feel free to add yours:
 
