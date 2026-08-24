@@ -11,9 +11,18 @@
       "problemMatcher": []
     },
     {
-      "label": "Build debug APK",
+      "label": "Build icon resources",
       "type": "shell",
-      "command": "make build && ./gradlew assembleDebug",
+      "command": "make build",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Assemble debug APK",
+      "type": "shell",
+      "command": "./gradlew assembleDebug",
       "options": {
         "cwd": "${workspaceFolder}"
       },

@@ -42,12 +42,13 @@ Notes:
 - The icon names are converted to Android resource names: it adds `apps_`, changes uppercase letters to lowercase and changes punctuation to `_`. eg. `firefox-focus.svg` => `apps_firefox_focus.svg`.
 - Existing icons that are not present in the update are not deleted.
 - A (shallow) checkout of papirus-icon-theme is storead in `.cache/`, so [papirus-icon-theme repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) is only cloned once on the first run, next runs only downloads new icon changes.
+- VSC (VS Code & Codium) task available
 
 # Build debug APK
 
 make build after changing icons or data.json; then run Gradle to create the APK.
 
-1. Build
+1. Build icon resources
    ```bash
     make build
    ```
@@ -56,15 +57,17 @@ make build after changing icons or data.json; then run Gradle to create the APK.
    - generates appfilter.xml, which maps Android app activities from data.json to icon names;
    - generates drawable.xml, the list of icons shown by the icon-pack app.
 
-2. Package
+2. Assemble debug APK
    ```bash
    ./gradlew assembleDebug
    ```
 
-   takes those generated PNG/XML resources plus the Android app code and packages them into a debug APK, written in `app/build/outputs/apk/debug/`.
+   takes those generated PNG/XML resources plus the Android app code and compiles them into a debug APK, written in `app/build/outputs/apk/debug/`.
 
 
-Note: Nix shell is provided with dependencies: Java 11, Android API 31, Android build tools and the icon conversion tools. VSC shell tasks load this shell with direnv. Run `direnv allow` once after cloning this project or changing `.envrc`.
+Notes:
+- VSC tasks available
+- Nix shell is provided with dependencies: Java 11, Android API 31, Android build tools and the icon conversion tools. VSC shell tasks should load this shell with direnv automatically. Run `direnv allow` once after cloning this project or changing `.envrc`.
 
 
 # Install
