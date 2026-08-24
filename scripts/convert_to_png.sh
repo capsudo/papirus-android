@@ -38,7 +38,8 @@ do_convert_to_png() {
 
 mkdir -p "$DEST_DIR"
 
-export DEST_DIR ICON_SIZE
+# xargs starts a new Bash process for every icon, so it needs this value to select the right Inkscape command-line syntax.
+export DEST_DIR ICON_SIZE INKSCAPE_VERSION
 export -f do_convert_to_png
 
 # Convert to bitmap images
