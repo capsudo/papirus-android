@@ -1,1 +1,16 @@
 include ':app'
+
+// Build CandyBar from source in this repository because its old JitPack artifacts are no longer all available.
+include ':candybar_library'
+project(':candybar_library').projectDir = file('third_party/candybar-foss/library')
+
+// CandyBar library uses this module for Android versions older than Android 5.
+include ':candybar_pre_lollipop_transitions'
+project(':candybar_pre_lollipop_transitions').projectDir = file('third_party/candybar-foss/extLibs/PreLollipopTransitions')
+
+// CandyBar version 3.14.2 uses these old library versions. Build their source here because JitPack no longer provides them.
+include ':photoview'
+project(':photoview').projectDir = file('third_party/photoview')
+
+include ':taptargetview'
+project(':taptargetview').projectDir = file('third_party/taptargetview')

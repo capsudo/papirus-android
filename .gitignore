@@ -7,6 +7,9 @@ captures/
 .gradle/
 app/build/
 
+# Gradle output for vendored Android libraries.
+third_party/**/build/
+
 # direnv
 .direnv/
 
