@@ -64,7 +64,7 @@ make build after changing icons or data.json; then run Gradle to create the APK.
    takes those generated PNG/XML resources plus the Android app code and packages them into a debug APK, written in `app/build/outputs/apk/debug/`.
 
 
-Note: Nix shell is provided with dependencies: Java 11, Android API 31, Android build tools and the icon conversion tools.
+Note: Nix shell is provided with dependencies: Java 11, Android API 31, Android build tools and the icon conversion tools. vsc tasks load this shell with direnv. Run `direnv allow` once after cloning this project or changing `.envrc`.
 
 
 # Install

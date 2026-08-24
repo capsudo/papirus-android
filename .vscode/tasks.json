@@ -4,7 +4,12 @@
     {
       "label": "Update Papirus icons",
       "type": "process",
-      "command": "${workspaceFolder}/scripts/update_icons.sh",
+      "command": "direnv",
+      "args": [
+        "exec",
+        ".",
+        "${workspaceFolder}/scripts/update_icons.sh"
+      ],
       "options": {
         "cwd": "${workspaceFolder}"
       },
@@ -12,8 +17,15 @@
     },
     {
       "label": "Build debug APK",
-      "type": "shell",
-      "command": "make build && ./gradlew assembleDebug",
+      "type": "process",
+      "command": "direnv",
+      "args": [
+        "exec",
+        ".",
+        "bash",
+        "-c",
+        "make build && ./gradlew assembleDebug"
+      ],
       "options": {
         "cwd": "${workspaceFolder}"
       },
