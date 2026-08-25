@@ -1,19 +1,11 @@
+# Papirus Icon Pack
+Popular Linux icon theme now on Android!
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/PapirusDevelopmentTeam/papirus_icons/master/preview.png" alt="preview"/>
 </p>
 
-# Papirus Icon Pack
-Popular Linux icon theme now on Android!
-
-# Fork
-
-This is a fork of [Papirus Android icon pack repo](https://github.com/PapirusDevelopmentTeam/papirus_icons/tree/master/scripts) which is outdated and not kept up to date with upstream [Papirus icon theme repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme).
-At time or writing last release [available on opendesktop.org](https://www.opendesktop.org/p/1662847/) is 20220220.
-
-This fork adds an update script that pulls icons from the upstream repo.
-
-
-# Supported Launchers:
+## Supported Launchers:
 Below launchers have been tested to be working successfully with Papirus Icon among others. Feel free to add yours:
 
 - Flick
@@ -26,7 +18,7 @@ Below launchers have been tested to be working successfully with Papirus Icon am
 - HiOS
 - _and many others..._
 
-# Features:
+## Features:
 - Fully Open Source
 - Pixel perfect
 - More than 1500 icons
@@ -35,10 +27,21 @@ Below launchers have been tested to be working successfully with Papirus Icon am
 - Check Update function
 - 8 Cloud Wallpapers
 
-# Sync current Papirus icons
+## Install
+1. Download the apk from [latest release](../../releases/latest)
+2. Install it (allow sources if needed)
+3. Click "Apply icon pack" from the app (for supported launchers)
+
+# Fork
+
+This is a fork of [Papirus Android icon pack repo](https://github.com/PapirusDevelopmentTeam/papirus_icons/tree/master/scripts) which is outdated and not kept up to date with upstream [Papirus icon theme repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme).
+At time or writing last release [available on opendesktop.org](https://www.opendesktop.org/p/1662847/) is 20220220.
+
+This fork adds an update script that pulls icons from the upstream repo.
+
+## Sync current Papirus icons
 
 Run `scripts/update_icons.sh` to update icons in `src/` from [Papirus icon theme repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme).
-
 
 ```bash
 scripts/update_icons.sh --dry-run
@@ -52,7 +55,7 @@ Notes:
 - A (shallow) checkout of papirus-icon-theme is storead in `.cache/`, so [papirus-icon-theme repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) is only cloned once on the first run, next runs only downloads new icon changes.
 - VSC (VS Code & Codium) task available.
 
-# Build debug APK
+## Build debug APK
 
 make build after changing icons or data.json; then run Gradle to create the APK.
 
@@ -72,12 +75,11 @@ make build after changing icons or data.json; then run Gradle to create the APK.
 
    takes those generated PNG/XML resources plus the Android app code and compiles them into a debug APK, written in `app/build/outputs/apk/debug/`.
 
-
 Notes:
 - VSC tasks available.
 - Nix shell is provided with dependencies: Java 11, Android API 31, Android build tools and the icon conversion tools. VSC shell tasks should load this shell with direnv automatically. Run `direnv allow` once after cloning this project or changing `.envrc`.
 
-# Build release APK
+## Build release APK
 
 Build icon resources first if icons or data.json changed.
 
@@ -119,17 +121,3 @@ make build
    The signed release APK is written in `app/build/outputs/apk/release/`.
 
    Note: VSC task available.
-
-
-# Install
-1. Download the apk from [latest release](../../releases/latest)
-2. Install it (allow sources if needed)
-3. Install the icon pack from the app (depends on launcher)
-
-Application have "Check Update" button for features updates.
-
-# Priority icon requests:
-1. If you donate
-2. Popular applications
-3. Open source applications
-4. Games
