@@ -27,6 +27,15 @@
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "Assemble release APK",
+      "type": "shell",
+      "command": "./gradlew assembleRelease",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
     }
   ]
 }

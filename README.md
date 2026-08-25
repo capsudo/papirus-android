@@ -50,7 +50,7 @@ Notes:
 - The icon names are converted to Android resource names: it adds `apps_`, changes uppercase letters to lowercase and changes punctuation to `_`. eg. `firefox-focus.svg` => `apps_firefox_focus.svg`.
 - Existing icons that are not present in the update are not deleted.
 - A (shallow) checkout of papirus-icon-theme is storead in `.cache/`, so [papirus-icon-theme repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) is only cloned once on the first run, next runs only downloads new icon changes.
-- VSC (VS Code & Codium) task available
+- VSC (VS Code & Codium) task available.
 
 # Build debug APK
 
@@ -60,10 +60,10 @@ make build after changing icons or data.json; then run Gradle to create the APK.
    ```bash
     make build
    ```
-   - checks data.json and SVG icon filenames;
-   - converts the SVG files in src/ into PNG files in app/src/main/res/drawable-nodpi/;
-   - generates appfilter.xml, which maps Android app activities from data.json to icon names;
-   - generates drawable.xml, the list of icons shown by the icon-pack app.
+   - checks data.json and SVG icon filenames
+   - converts the SVG files in src/ into PNG files in app/src/main/res/drawable-nodpi/
+   - generates appfilter.xml, which maps Android app activities from data.json to icon names
+   - generates drawable.xml, the list of icons shown by the icon-pack app
 
 2. Assemble debug APK
    ```bash
@@ -74,10 +74,16 @@ make build after changing icons or data.json; then run Gradle to create the APK.
 
 
 Notes:
-- VSC tasks available
+- VSC tasks available.
 - Nix shell is provided with dependencies: Java 11, Android API 31, Android build tools and the icon conversion tools. VSC shell tasks should load this shell with direnv automatically. Run `direnv allow` once after cloning this project or changing `.envrc`.
 
 # Build release APK
+
+Build icon resources first if icons or data.json changed.
+
+```bash
+make build
+```
 
 1. Create signing key
 
@@ -92,9 +98,27 @@ Notes:
 
    Store the password and ~/.android/papirus-icons-release.keystore safely.
 
+   Note: can use same password for both keystore and key.
+
+2. Configure release signing
+
+   ```bash
+   cp signing.properties.example signing.properties
+   ```
+
    Rename `signing.properties.example` to `signing.properties` and fill USERNAME, KEYSTORE_PASSWORD and KEY_PASSWORD.
 
-   Note: can use same password for both keystore and key.
+   Note: `signing.properties` is git ignored.
+
+3. Assemble release APK
+
+   ```bash
+   ./gradlew assembleRelease
+   ```
+
+   The signed release APK is written in `app/build/outputs/apk/release/`.
+
+   Note: VSC task available.
 
 
 # Install
