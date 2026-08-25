@@ -21,7 +21,7 @@ Below launchers have been tested to be working successfully with Papirus Icon am
 ## Features:
 - Fully Open Source
 - Pixel perfect
-- More than 1500 icons
+- More than 5000 icons
 - Inspired by Material design
 - Icon Request option
 - Check Update function
