@@ -21,6 +21,8 @@ allprojects {
         MinSdk = 16
         TargetSdk = 31
         CompileSdk = 31
+        // specify build tools v31 otherwise gradle (7.0.4) selects v30.0.2 and tries to install it (which crashes on nix)
+        BuildTools = "31.0.0"
     }
 }
 

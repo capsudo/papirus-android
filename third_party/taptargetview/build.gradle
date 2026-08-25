@@ -4,6 +4,7 @@ plugins {
 
 android {
     compileSdkVersion rootProject.ext.CompileSdk
+    buildToolsVersion rootProject.ext.BuildTools // use same build tools version than root
 
     defaultConfig {
         minSdkVersion rootProject.ext.MinSdk

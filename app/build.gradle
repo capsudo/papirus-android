@@ -14,8 +14,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion rootProject.ext.CompileSdk
-    // specify build tools version otherwise gradle, 7.0.4, selects v30.0.2 and tries to install it (which crashes on nix)
-    buildToolsVersion "31.0.0"
+    buildToolsVersion rootProject.ext.BuildTools // use same build tools version than root
 
     defaultConfig {
         applicationId "io.github.PapirusDevelopmentTeam.papirus_icons"
