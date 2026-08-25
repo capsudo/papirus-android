@@ -12,6 +12,17 @@ apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 */
 apply plugin: 'com.android.application'
 
+// load local release signing values
+// Note: file is ignored by Git.
+def releaseSigningPropertiesFile = rootProject.file('signing.properties')
+def releaseSigningProperties = new Properties()
+
+if (releaseSigningPropertiesFile.exists()) {
+    releaseSigningPropertiesFile.withInputStream { signingPropertiesInputStream ->
+        releaseSigningProperties.load(signingPropertiesInputStream)
+    }
+}
+
 android {
     compileSdkVersion rootProject.ext.CompileSdk
     buildToolsVersion rootProject.ext.BuildTools // use same build tools version than root
@@ -34,8 +45,20 @@ android {
         }
     }
     
+    signingConfigs {
+        release {
+            if (releaseSigningPropertiesFile.exists()) {
+                storeFile rootProject.file(releaseSigningProperties['storeFile'])
+                storePassword releaseSigningProperties['storePassword']
+                keyAlias releaseSigningProperties['keyAlias']
+                keyPassword releaseSigningProperties['keyPassword']
+            }
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             debuggable false
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

@@ -77,6 +77,25 @@ Notes:
 - VSC tasks available
 - Nix shell is provided with dependencies: Java 11, Android API 31, Android build tools and the icon conversion tools. VSC shell tasks should load this shell with direnv automatically. Run `direnv allow` once after cloning this project or changing `.envrc`.
 
+# Build release APK
+
+1. Create signing key
+
+   ```bash
+    keytool -genkeypair \
+      -keystore "$HOME/.android/papirus-icons-release.keystore" \
+      -alias papirus-icons \
+      -keyalg RSA \
+      -keysize 4096 \
+      -validity 10000
+   ```
+
+   Store the password and ~/.android/papirus-icons-release.keystore safely.
+
+   Rename `signing.properties.example` to `signing.properties` and fill USERNAME, KEYSTORE_PASSWORD and KEY_PASSWORD.
+
+   Note: can use same password for both keystore and key.
+
 
 # Install
 You can [download icon pack](https://www.pling.com/p/1662847/) directly from the Android browser or download on PC and send to phone via KDE Connect/Send Anywhere/Android File Transfer or adb.

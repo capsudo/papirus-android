@@ -27,3 +27,6 @@ work/*.txt
 
 # Shallow Papirus checkout created by scripts/update-icons.sh.
 .cache/papirus-icon-theme/
+
+# Private signing credentials for local release builds.
+signing.properties

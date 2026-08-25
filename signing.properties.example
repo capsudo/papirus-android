@@ -1,0 +1,4 @@
+storeFile=/home/USERNAME/.android/papirus-icons-release.keystore
+storePassword=KEYSTORE_PASSWORD
+keyAlias=papirus-icons
+keyPassword=KEY_PASSWORD
