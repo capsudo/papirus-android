@@ -122,7 +122,10 @@ make build
 
 
 # Install
-You can [download icon pack](https://www.pling.com/p/1662847/) directly from the Android browser or download on PC and send to phone via KDE Connect/Send Anywhere/Android File Transfer or adb.
+1. Download the apk from [latest release](../../releases/latest)
+2. Install it (allow sources if needed)
+3. Install the icon pack from the app (depends on launcher)
+
 Application have "Check Update" button for features updates.
 
 # Priority icon requests:
