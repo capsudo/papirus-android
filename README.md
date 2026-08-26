@@ -55,6 +55,16 @@ Notes:
 - A (shallow) checkout of papirus-icon-theme is storead in `.cache/`, so [papirus-icon-theme repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) is only cloned once on the first run, next runs only downloads new icon changes.
 - VSC (VS Code & Codium) task available.
 
+## Icon mappings
+
+[data.json](/data.json) maps each icon resource name to Android `package/activity` components. `make build` generates `appfilter.xml` from these mappings.
+
+To be correctly mapped to an android app (and applied automatically to an installed app by launcher) the correct application id and launcher activity name is required. A dummy activity name (`ReplaceWithRealActivityLauncher`) was used when the real launcher activity is not known.
+
+Most of the icons from [Papirus icon theme repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) are not android apps, yet they are all included and mapped in this pack so they can still be used for as custom icons (for instance to set a custom icon for a PWA app added on home screen). For those a dummy application id `io.github.papirusdevelopmentteam.papirus_icons.placeholder.ICON_NAME` and a dummy activity name `FakeActivityLauncher` are used.
+
+If an icon is not correctly mapped to an app, search for it in the [mapping](/data.json) and [open an issue](/issues/new) or [make a PR](/compare) if it needs to be updated. 
+
 ## Build debug APK
 
 make build after changing icons or data.json; then run Gradle to create the APK.
