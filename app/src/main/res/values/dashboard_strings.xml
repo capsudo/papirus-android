@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="crash_report_message">%s has stopped. Open GitHub Issues to report this crash.</string>
-    <string name="crash_report_send">Open GitHub Issues</string>
-    <!-- updates sidebar label to “Request icons from Papirus” when view navigation_view_request is opened-->
-    <string name="navigation_view_request">Request icons from Papirus</string>
-</resources>

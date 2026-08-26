@@ -68,11 +68,6 @@ public class CandyBarCrashReport extends AppCompatActivity {
                     .positiveText(R.string.crash_report_send)
                     .negativeText(R.string.close)
                     .onPositive((dialog, which) -> {
-                        if (ReportBugsHelper.openBugReportPage(this)) {
-                            dialog.dismiss();
-                            return;
-                        }
-
                         Intent intent = new Intent(Intent.ACTION_SEND);
                         intent.setType("text/plain");
                         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailAddress});

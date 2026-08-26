@@ -320,12 +320,6 @@
     <!-- Show intro guides on first run -->
     <bool name="show_intro">false</bool>
 
-    <!-- Issue tracker used by dashboard and crash reports. -->
-    <string name="bug_report_url"></string>
-
-    <!-- Issue tracker used for new icon requests. -->
-    <string name="icon_request_url"></string>
-
     <!-- These are not documented. As you can guess, these are not for general use -->
     <string name="version_from_playstore">{{appVersion}} R</string>
     <string name="version_outside_playstore">{{appVersion}}</string>

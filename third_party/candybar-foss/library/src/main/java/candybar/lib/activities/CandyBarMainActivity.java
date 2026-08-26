@@ -481,15 +481,7 @@ public abstract class CandyBarMainActivity extends AppCompatActivity implements
             if (id == R.id.navigation_view_home) mPosition = Extras.Tag.HOME.idx;
             else if (id == R.id.navigation_view_apply) mPosition = Extras.Tag.APPLY.idx;
             else if (id == R.id.navigation_view_icons) mPosition = Extras.Tag.ICONS.idx;
-            // handle click on sidebar Icon Request (navigation_view_request) since not using CandyBar’s built-in email request screen.
-            else if (id == R.id.navigation_view_request) {
-                if (RequestHelper.openIconRequestPage(this)) {
-                    mDrawerLayout.closeDrawers();
-                    return true;
-                }
-
-                mPosition = Extras.Tag.REQUEST.idx;
-            }
+            else if (id == R.id.navigation_view_request) mPosition = Extras.Tag.REQUEST.idx;
             else if (id == R.id.navigation_view_wallpapers) mPosition = Extras.Tag.WALLPAPERS.idx;
             else if (id == R.id.navigation_view_presets) mPosition = Extras.Tag.PRESETS.idx;
             else if (id == R.id.navigation_view_settings) mPosition = Extras.Tag.SETTINGS.idx;

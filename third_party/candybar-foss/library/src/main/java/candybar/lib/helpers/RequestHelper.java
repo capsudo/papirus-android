@@ -5,7 +5,6 @@ import static candybar.lib.helpers.DrawableHelper.getRightIcon;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
@@ -78,16 +77,6 @@ public class RequestHelper {
     public static final String THEME_RESOURCES = "theme_resources.xml";
     public static final String ZIP = "icon_request.zip";
     public static final String REBUILD_ZIP = "rebuild_icon_request.zip";
-
-    /** Opens configured icon request page and returns true when a URL is available. */
-    public static boolean openIconRequestPage(@NonNull Context context) {
-        String iconRequestPageUrl = context.getString(R.string.icon_request_url);
-        if (iconRequestPageUrl.isEmpty()) return false;
-
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(iconRequestPageUrl));
-        context.startActivity(intent);
-        return true;
-    }
 
     public static String getGeneratedZipName(@NonNull String baseName) {
         return baseName.substring(0, baseName.lastIndexOf(".")) + "_" + TimeHelper.getDateTime(
