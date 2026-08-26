@@ -19,6 +19,7 @@ pkgs.mkShell {
     pkgs.findutils # update icons: find
     pkgs.diffutils #  # update icons: cmp
     pkgs.git #  # update icons: git clone/pull
+    pkgs.gh # create GitHub release from VSC task
     androidSdk.androidsdk # build apk: Android API 31 and build tools 31.0.0
     pkgs.inkscape # build apk: convert SVG icons to PNG files
     pkgs.jdk11_headless # build apk: Java version required by Gradle 7.0.2 and Android Gradle Plugin 7.0.4

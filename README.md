@@ -131,3 +131,24 @@ make build
    The signed release APK is written in `app/build/outputs/apk/release/`.
 
    Note: VSC task available.
+
+## Publish the release
+
+1. Version bump in [app/build.gradle](/app/build.gradle) then commit this change.
+
+2. Create git tag (name and messsage) on this commit then push.
+
+3. Publish on GitHub
+
+   ```bash
+   scripts/create_github_release.sh
+   ```
+
+   It creates a GitHub release with tag name and title from `v<versionName>` and notes from its tag message.
+
+   The script checks if worktree is clean, if tag points at current commit and pushed to origin, if APK metadata matches Gradle version and if GitHub release does not already exist.
+
+   Notes:
+   - it uses `gh` CLI tool, must be installed (included in nix shell)
+   - VSC tasks available.
+

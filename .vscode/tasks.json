@@ -36,6 +36,15 @@
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "Create GitHub release",
+      "type": "shell",
+      "command": "${workspaceFolder}/scripts/create_github_release.sh",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
     }
   ]
 }
