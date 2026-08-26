@@ -144,13 +144,16 @@ Notes:
 
 3. Publish on GitHub
 
+   Checkout `master`, because CandyBar checks `update.json` from that branch.
+
    ```bash
    scripts/create_github_release.sh
    ```
+   The script first checks if worktree is clean, if checked out branch is master, if local and origin tags match, if APK metadata matches Gradle version and if GitHub release does not already exist.
 
-   It creates a GitHub release with tag name and title from `v<versionName>` and notes from its tag message.
+   If so it creates a GitHub release with tag name and title from `v<versionName>` and notes from its tag message.
 
-   The script checks if worktree is clean, if local and origin tags match, if APK metadata matches Gradle version and if GitHub release does not already exist.
+   After release is successfully published on GitHub, it updates `update.json` (see [Update](#update)), commits it and pushes that commit to `master`.
 
    Notes:
    - it uses `gh` CLI tool, must be installed (included in nix shell)

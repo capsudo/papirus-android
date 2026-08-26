@@ -6,6 +6,8 @@ PROJECT_DIRECTORY="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 GRADLE_BUILD_FILE="$PROJECT_DIRECTORY/app/build.gradle"
 RELEASE_APK_DIRECTORY="$PROJECT_DIRECTORY/app/build/outputs/apk/release"
 RELEASE_METADATA_FILE="$RELEASE_APK_DIRECTORY/output-metadata.json"
+UPDATE_CONFIGURATION_FILE="$PROJECT_DIRECTORY/update.json"
+UPDATE_CONFIGURATION_BRANCH="master"
 
 fail() {
     printf 'Cannot create GitHub release: %s\n' "$1" >&2
@@ -17,6 +19,12 @@ cd "$PROJECT_DIRECTORY"
 # Release tag must include every committed release change.
 if [ -n "$(git status --porcelain)" ]; then
     fail "commit or remove local changes first"
+fi
+
+# Update metadata must reach master because CandyBar downloads update.json from that branch.
+current_git_branch_name="$(git branch --show-current)"
+if [ "$current_git_branch_name" != "$UPDATE_CONFIGURATION_BRANCH" ]; then
+    fail "check out $UPDATE_CONFIGURATION_BRANCH before creating a release"
 fi
 
 # Read versions from Gradle because these values also identify generated APK.
@@ -111,6 +119,16 @@ if [ ! -f "$RELEASE_METADATA_FILE" ]; then
     fail "build release APK first; output-metadata.json is missing"
 fi
 
+# Check update.json
+# CandyBar downloads this file after installation to get update version, download URL and notes.
+if [ ! -f "$UPDATE_CONFIGURATION_FILE" ]; then
+    fail "update.json is missing"
+fi
+
+if ! jq -e 'type == "object"' "$UPDATE_CONFIGURATION_FILE" >/dev/null; then
+    fail "update.json is not a JSON object"
+fi
+
 # Metadata comes from same Gradle build as APK and contains its output filename.
 metadata_version_code="$(jq -r '.elements[0].versionCode // empty' "$RELEASE_METADATA_FILE")"
 metadata_version_name="$(jq -r '.elements[0].versionName // empty' "$RELEASE_METADATA_FILE")"
@@ -128,3 +146,27 @@ gh release create "$release_tag" "$release_apk_path" \
     --title "$release_tag" \
     --notes "$release_notes" \
     --verify-tag
+
+# Update update.json
+# GitHub release exists now, so latest/download resolves to uploaded APK.
+release_download_url="https://github.com/$github_repository/releases/latest/download/$metadata_apk_filename"
+temporary_update_configuration_file="$(mktemp)"
+trap 'rm -f "$temporary_update_configuration_file"' EXIT
+
+jq \
+    --arg latest_version "$gradle_version_name" \
+    --argjson latest_version_code "$gradle_version_code" \
+    --arg release_download_url "$release_download_url" \
+    --arg release_notes "$release_notes" \
+    '.latestVersion = $latest_version |
+     .latestVersionCode = $latest_version_code |
+     .url = $release_download_url |
+     .releaseNotes = ($release_notes | split("\\n") | map(gsub("\\r$"; "") | select(length > 0)))' \
+    "$UPDATE_CONFIGURATION_FILE" > "$temporary_update_configuration_file"
+mv "$temporary_update_configuration_file" "$UPDATE_CONFIGURATION_FILE"
+
+# Commit and push it to master so it is available at URL checked by CandyBar check-update
+git add "$UPDATE_CONFIGURATION_FILE"
+# Publish config in follow-up commit so it never points at APK before GitHub upload succeeds.
+git commit -m "Update in-app update metadata for $release_tag"
+git push origin "$UPDATE_CONFIGURATION_BRANCH"
