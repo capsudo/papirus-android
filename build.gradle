@@ -5,7 +5,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.4'
+        classpath 'com.android.tools.build:gradle:9.2.1'
     }
 }
 
@@ -18,14 +18,13 @@ allprojects {
     }
 
     rootProject.ext {
-        MinSdk = 16
-        TargetSdk = 31
-        CompileSdk = 31
-        // specify build tools v31 otherwise gradle (7.0.4) selects v30.0.2 and tries to install it (which crashes on nix)
-        BuildTools = "31.0.0"
+        VersionName = '3.23.0'
+        MinSdk = 21
+        TargetSdk = 36
+        CompileSdk = 36
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register('clean', Delete) {
+    delete rootProject.layout.buildDirectory
 }

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:installLocation="auto"
-    package="io.github.PapirusDevelopmentTeam.papirus_icons">
+    android:installLocation="auto">
 
     <!-- If you are not using donation and premium request, you need to remove BILLING permission -->
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -23,16 +22,15 @@
         android:networkSecurityConfig="@xml/network_config"
         android:label="Papirus Icon Pack fork"
         android:supportsRtl="true"
-        android:theme="@style/CandyBar.Theme.App"
-        tools:replace="android:icon"
-        tools:targetApi="n">
+        android:theme="@style/Theme.App.Starting"
+        android:enableOnBackInvokedCallback="true"
+        tools:targetApi="33">
 
         <activity
-            android:name="io.github.PapirusDevelopmentTeam.papirus_icons.activities.SplashActivity"
+            android:name="io.github.PapirusDevelopmentTeam.papirus_icons.activities.MainActivity"
             android:launchMode="singleTop"
-            android:noHistory="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/CandyBar.Theme.Splash"
+            android:theme="@style/Theme.App.Starting"
+            android:configChanges="uiMode|orientation|keyboardHidden|screenSize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,17 +39,6 @@
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
-        </activity>
-
-        <activity
-            android:name="io.github.PapirusDevelopmentTeam.papirus_icons.activities.MainActivity"
-            android:launchMode="singleTop"
-            android:theme="@style/CandyBar.Theme.App"
-            android:configChanges="uiMode|orientation|keyboardHidden|screenSize"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

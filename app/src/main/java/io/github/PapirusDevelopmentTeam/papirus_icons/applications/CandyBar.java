@@ -2,12 +2,21 @@ package io.github.PapirusDevelopmentTeam.papirus_icons.applications;
 
 import androidx.annotation.NonNull;
 
+import io.github.PapirusDevelopmentTeam.papirus_icons.R;
+
 // TODO: Remove `//` below to enable OneSignal
 //import com.onesignal.OneSignal;
 
 import candybar.lib.applications.CandyBarApplication;
 
 public class CandyBar extends CandyBarApplication {
+
+    /** Returns application drawable resource class, for example R.drawable.class. */
+    @NonNull
+    @Override
+    public Class<?> getDrawableClass() {
+        return R.drawable.class;
+    }
 
     // TODO: Remove `/*` and `*/` below to enable OneSignal
     /*

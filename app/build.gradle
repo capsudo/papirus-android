@@ -16,6 +16,7 @@ apply plugin: 'com.android.application'
 // Note: file is ignored by Git.
 def releaseSigningPropertiesFile = rootProject.file('signing.properties')
 def releaseSigningProperties = new Properties()
+def applicationReleaseVersionName = '20260801.2'
 
 if (releaseSigningPropertiesFile.exists()) {
     releaseSigningPropertiesFile.withInputStream { signingPropertiesInputStream ->
@@ -24,19 +25,16 @@ if (releaseSigningPropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion rootProject.ext.CompileSdk
-    buildToolsVersion rootProject.ext.BuildTools // use same build tools version than root
+    compileSdk rootProject.ext.CompileSdk
+
+    namespace 'io.github.PapirusDevelopmentTeam.papirus_icons'
 
     defaultConfig {
         applicationId "io.github.PapirusDevelopmentTeam.papirus_icons"
         minSdkVersion rootProject.ext.MinSdk
         targetSdkVersion rootProject.ext.TargetSdk
         versionCode 13
-        versionName "20260801.2"
-        multiDexEnabled true
-
-        // custom apk file name, use version name instead of version code. eg. papirus-android-v20260801-release.apk
-        setArchivesBaseName("${parent.name}-v${versionName}")
+        versionName applicationReleaseVersionName
     }
 
     bundle {
@@ -61,13 +59,26 @@ android {
             signingConfig signingConfigs.release
             debuggable false
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+}
+
+androidComponents {
+    onVariants(selector().all()) { variant ->
+        // Use app version instead of version code. Example: papirus-android-v20260801.2-debug.apk.
+        variant.outputs.forEach { output ->
+            output.outputFileName.set("${rootProject.name}-v${applicationReleaseVersionName}-${variant.name}.apk")
+        }
     }
 }
 
@@ -81,7 +92,7 @@ dependencies {
      * If you've missed some versions you've to also follow update guide for those versions
      */
 
-    implementation project(':candybar_library')
+    implementation 'com.github.zixpo.candybar:library:3.23.0'
 
     // TODO: Remove `//` below to enable OneSignal
     //implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]'
