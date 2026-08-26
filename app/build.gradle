@@ -31,8 +31,8 @@ android {
         applicationId "io.github.PapirusDevelopmentTeam.papirus_icons"
         minSdkVersion rootProject.ext.MinSdk
         targetSdkVersion rootProject.ext.TargetSdk
-        versionCode 12
-        versionName "20260801.1"
+        versionCode 13
+        versionName "20260801.2"
         multiDexEnabled true
 
         // custom apk file name, use version name instead of version code. eg. papirus-android-v20260801-release.apk
