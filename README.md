@@ -128,7 +128,7 @@ make build
    ./gradlew assembleRelease
    ```
 
-   The signed release APK is written in `app/build/outputs/apk/release/`.
+   The signed release APK is written in `app/build/outputs/apk/release/` as `papirus-android-v<versionName>-release.apk`.
 
    Note: VSC task available.
 
@@ -151,4 +151,3 @@ make build
    Notes:
    - it uses `gh` CLI tool, must be installed (included in nix shell)
    - VSC tasks available.
-

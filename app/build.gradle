@@ -35,8 +35,8 @@ android {
         versionName "20260801.1"
         multiDexEnabled true
 
-        // Naming app bundles
-        setArchivesBaseName("${parent.name}-v${versionCode}")
+        // custom apk file name, use version name instead of version code. eg. papirus-android-v20260801-release.apk
+        setArchivesBaseName("${parent.name}-v${versionName}")
     }
 
     bundle {
