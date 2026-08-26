@@ -63,39 +63,37 @@ To be correctly mapped to an android app (and applied automatically to an instal
 
 Most of the icons from [Papirus icon theme repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) are not android apps, yet they are all included and mapped in this pack so they can still be used for as custom icons (for instance to set a custom icon for a PWA app added on home screen). For those a dummy application id `io.github.papirusdevelopmentteam.papirus_icons.placeholder.ICON_NAME` and a dummy activity name `FakeActivityLauncher` are used.
 
-If an icon is not correctly mapped to an app, search for it in the [mapping](/data.json) and [open an issue](../../issues/new) or [make a PR](../../compare) if it needs to be updated. 
+If an icon is not correctly mapped to an app, search for it in the [mapping](/data.json) and [open an issue](../../issues/new) or [make a PR](../../compare) if it needs to be updated.
 
-## Build debug APK
+## Build icon resources
 
-make build after changing icons or data.json; then run Gradle to create the APK.
-
-1. Build icon resources
-   ```bash
-    make build
-   ```
-   - checks data.json and SVG icon filenames
-   - converts the SVG files in src/ into PNG files in app/src/main/res/drawable-nodpi/
-   - generates appfilter.xml, which maps Android app activities from data.json to icon names
-   - generates drawable.xml, the list of icons shown by the icon-pack app
-
-2. Assemble debug APK
-   ```bash
-   ./gradlew assembleDebug
-   ```
-
-   takes those generated PNG/XML resources plus the Android app code and compiles them into a debug APK, written in `app/build/outputs/apk/debug/`.
-
-Notes:
-- VSC tasks available.
-- Nix shell is provided with dependencies: Java 11, Android API 31, Android build tools and the icon conversion tools. VSC shell tasks should load this shell with direnv automatically. Run `direnv allow` once after cloning this project or changing `.envrc`.
-
-## Build release APK
-
-Build icon resources first if icons or data.json changed.
+rquired after changing icons or data.json.
 
 ```bash
-make build
+   make build
 ```
+- checks data.json and SVG icon filenames
+- converts the SVG files in src/ into PNG files in app/src/main/res/drawable-nodpi/
+- generates appfilter.xml, which maps Android app activities from data.json to icon names
+- generates drawable.xml, the list of icons shown by the icon-pack app
+
+Notes:
+- VSC task available.
+- Nix shell provides required tools for icon conversion. VSC shell tasks should load this shell with direnv automatically. Run `direnv allow` once after cloning this project or changing `.envrc`.
+
+## Assemble debug APK
+
+```bash
+./gradlew assembleDebug
+```
+
+It takes those generated PNG/XML resources plus the Android app code and compiles them into a debug APK, written in `app/build/outputs/apk/debug/`.
+
+Notes:
+- VSC task available.
+- Nix shell provids required dependencies: Java 11, Android API 31, Android build tools...
+
+## Assemble release APK
 
 1. Create signing key
 
@@ -130,9 +128,11 @@ make build
 
    The signed release APK is written in `app/build/outputs/apk/release/` as `papirus-android-v<versionName>-release.apk`.
 
-   Note: VSC task available.
+   Notes:
+   - VSC task available.
+   - Nix shell provids required dependencies: Java 11, Android API 31, Android build tools...
 
-## Publish the release
+## Create GitHub release
 
 1. Version bump in [app/build.gradle](/app/build.gradle) then commit this change.
 
