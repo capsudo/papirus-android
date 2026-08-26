@@ -151,7 +151,7 @@
     <!--
         CONFIG: ICON REQUEST
     -->
-    <!-- This fork updates existing icons and does not accept new icon requests. -->
+    <!-- This fork sends new icon requests to the Papirus project issue tracker. -->
     <bool name="enable_icon_request">false</bool>
 
     <!-- Enable regular icon request limit
@@ -203,8 +203,9 @@
     <string name="regular_request_method">email</string>
     <string name="premium_request_method"></string>
 
-    <!-- Bug reports open the project issue tracker. Icon requests are disabled above. -->
+    <!-- Bug reports stay in this fork. Icon requests open the Papirus project tracker. -->
     <string name="bug_report_url">https://github.com/capsudo/papirus-android/issues</string>
+    <string name="icon_request_url">https://github.com/PapirusDevelopmentTeam/papirus-icon-theme/issues</string>
     <string name="regular_request_email"></string>
     <string name="premium_request_email"></string>
 

@@ -44,6 +44,7 @@ public class NavigationViewHelper {
         if (menuItem == null) return;
 
         menuItem.setVisible(context.getResources().getBoolean(R.bool.enable_icon_request) ||
+                context.getResources().getString(R.string.icon_request_url).length() > 0 ||
                 Preferences.get(context).isPremiumRequestEnabled());
     }
 
