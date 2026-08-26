@@ -44,7 +44,7 @@
         CONFIG: HOME
     -->
     <!-- Home title. This will be shown in the home page -->
-    <string name="home_title">Papirus Icon Pack</string>
+    <string name="home_title">Papirus Icon Pack fork</string>
 
     <!-- Home image
         If you want to use an image from url, just put the url here
@@ -74,10 +74,10 @@
         -->
     <string name="home_description">
         <![CDATA[
-            Popular Linux icon theme now on Android!
+            Updated Android fork of the Papirus icon theme.
             <br>
             <br>
-            Your donations will help in the development of the application and accelerate the creation of new icons.
+            Donations support the Papirus Development Team and creation of new icons.
         ]]>
     </string>
 
@@ -89,7 +89,7 @@
     <!-- Link to your app's main page. It will be used when your user shares your app using "Share" button.
         Leave this empty to disable the "Share" button.
         You can use special keyword `{{packageName}}`, `{{packageName}}` will be replaced with your app's package name -->
-    <string name="share_link">https://www.pling.com/p/1662847</string>
+    <string name="share_link">https://github.com/capsudo/papirus-android</string>
 
     <!-- Enable "Check for update" button.
         It needs the option "config_json" to be configured in order to work -->
@@ -151,8 +151,8 @@
     <!--
         CONFIG: ICON REQUEST
     -->
-    <!-- Enable or disable regular icon request -->
-    <bool name="enable_icon_request">true</bool>
+    <!-- This fork updates existing icons and does not accept new icon requests. -->
+    <bool name="enable_icon_request">false</bool>
 
     <!-- Enable regular icon request limit
         When enabled users will be able to request only the specified number of icons.
@@ -203,11 +203,10 @@
     <string name="regular_request_method">email</string>
     <string name="premium_request_method"></string>
 
-    <!-- Email to use when sending icon requests.
-        Regular request email address will be used to send bug reports.
-        You can leave "premium_request_email" empty to use the regular request's email to send premium icon requests. -->
-    <string name="regular_request_email">varlesh@yandex.ru</string>
-    <string name="premium_request_email">varlesh@yandex.ru</string>
+    <!-- Bug reports open the project issue tracker. Icon requests are disabled above. -->
+    <string name="bug_report_url">https://github.com/capsudo/papirus-android/issues</string>
+    <string name="regular_request_email"></string>
+    <string name="premium_request_email"></string>
 
     <!-- Icon request email subjects. Leave empty to use default Subject. -->
     <string name="regular_request_email_subject"></string>
@@ -272,14 +271,17 @@
     <string name="about_profile_image">profile_picture</string>
 
     <!-- The BIG text which is shown above the description and below the about profile image -->
-    <string name="about_title">Papirus Development Team</string>
+    <string name="about_title">Papirus Icon Pack fork</string>
 
     <!-- The description which is shown below the about title.
         Put your markup/text inside of `<![CDATA[` and `]]>`
         ex: `<![CDATA[ There are - <b>Bold</b> <i>Italic</i> <u>Underline</u> <a href="url">Link</a> ]]>` -->
     <string name="about_desc">
         <![CDATA[
-            Popular Linux icon theme now on Android!
+            Updated Android fork of the Papirus icon theme.
+            <br>
+            <br>
+            Bug reports and update feedback are handled in this fork's GitHub repository.
         ]]>
     </string>
 
@@ -293,8 +295,7 @@
         ex: <string-array name="about_social_links"></string-array>
         -->
     <string-array name="about_social_links">
-        <item>varlesh@gmail.com</item>
-        <item>https://github.com/PapirusDevelopmentTeam/papirus_icons</item>
+        <item>https://github.com/capsudo/papirus-android</item>
     </string-array>
 
     <!-- Contributors dialog

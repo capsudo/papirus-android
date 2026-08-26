@@ -2,6 +2,7 @@ package candybar.lib.helpers;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.util.Log;
@@ -60,6 +61,8 @@ public class ReportBugsHelper {
     private static String UTF8 = "UTF8";
 
     public static void prepareReportBugs(@NonNull Context context) {
+        if (openBugReportPage(context)) return;
+
         MaterialDialog dialog = new MaterialDialog.Builder(context)
                 .customView(R.layout.dialog_report_bugs, true)
                 .typeface(TypefaceHelper.getMedium(context), TypefaceHelper.getRegular(context))
@@ -81,6 +84,16 @@ public class ReportBugsHelper {
             inputLayout.setError(context.getResources().getString(R.string.report_bugs_desc_empty));
         });
         dialog.show();
+    }
+
+    /** Opens configured issue tracker and returns true when a URL is available. */
+    public static boolean openBugReportPage(@NonNull Context context) {
+        String bugReportPageUrl = context.getString(R.string.bug_report_url);
+        if (bugReportPageUrl.isEmpty()) return false;
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(bugReportPageUrl));
+        context.startActivity(intent);
+        return true;
     }
 
     @Nullable

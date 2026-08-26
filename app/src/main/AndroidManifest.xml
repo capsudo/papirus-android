@@ -21,7 +21,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:networkSecurityConfig="@xml/network_config"
-        android:label="Papirus Icon Pack"
+        android:label="Papirus Icon Pack fork"
         android:supportsRtl="true"
         android:theme="@style/CandyBar.Theme.App"
         tools:replace="android:icon"
