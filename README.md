@@ -32,6 +32,10 @@ Below launchers have been tested to be working successfully with Papirus Icon am
 2. Install it (allow sources if needed)
 3. Click "Apply icon pack" from the app (for supported launchers)
 
+## Update
+
+App includes a (small) "Check Update" button (refresh icon) that checks for latest apk release available on this GitHub repo.
+
 # Fork
 
 This is a fork of [Papirus Android icon pack repo](https://github.com/PapirusDevelopmentTeam/papirus_icons/tree/master/scripts) which is outdated and not kept up to date with upstream [Papirus icon theme repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme).
@@ -67,7 +71,7 @@ If an icon is not correctly mapped to an app, search for it in the [mapping](/da
 
 ## Build icon resources
 
-rquired after changing icons or data.json.
+required after changing icons or data.json.
 
 ```bash
    make build
