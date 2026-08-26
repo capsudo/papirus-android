@@ -146,7 +146,7 @@ Notes:
 
    It creates a GitHub release with tag name and title from `v<versionName>` and notes from its tag message.
 
-   The script checks if worktree is clean, if tag points at current commit and pushed to origin, if APK metadata matches Gradle version and if GitHub release does not already exist.
+   The script checks if worktree is clean, if local and origin tags match, if APK metadata matches Gradle version and if GitHub release does not already exist.
 
    Notes:
    - it uses `gh` CLI tool, must be installed (included in nix shell)

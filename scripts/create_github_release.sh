@@ -49,12 +49,8 @@ if [ "$tag_object_type" != "tag" ]; then
     fail "$release_tag must be an annotated tag so its message can become release notes"
 fi
 
-# Release tag must point at current commit, not an earlier release commit.
-head_commit="$(git rev-parse HEAD)"
+# Local and origin tags must identify same release commit.
 tag_commit="$(git rev-parse "$release_tag^{}")"
-if [ "$tag_commit" != "$head_commit" ]; then
-    fail "$release_tag must point at current commit $head_commit"
-fi
 
 release_notes="$(git for-each-ref --format='%(contents)' "refs/tags/$release_tag")"
 if ! grep -q '[^[:space:]]' <<< "$release_notes"; then
@@ -69,8 +65,8 @@ fi
 remote_tag_commit="$(printf '%s\n' "$remote_tag_references" | awk \
     -v remote_tag_reference="refs/tags/$release_tag^{}" \
     '$2 == remote_tag_reference { print $1 }')"
-if [ "$remote_tag_commit" != "$head_commit" ]; then
-    fail "$release_tag is not pushed to origin at current commit"
+if [ "$remote_tag_commit" != "$tag_commit" ]; then
+    fail "$release_tag on origin does not match local release tag"
 fi
 
 if ! command -v gh >/dev/null; then
