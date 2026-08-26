@@ -63,7 +63,7 @@ To be correctly mapped to an android app (and applied automatically to an instal
 
 Most of the icons from [Papirus icon theme repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) are not android apps, yet they are all included and mapped in this pack so they can still be used for as custom icons (for instance to set a custom icon for a PWA app added on home screen). For those a dummy application id `io.github.papirusdevelopmentteam.papirus_icons.placeholder.ICON_NAME` and a dummy activity name `FakeActivityLauncher` are used.
 
-If an icon is not correctly mapped to an app, search for it in the [mapping](/data.json) and [open an issue](/issues/new) or [make a PR](/compare) if it needs to be updated. 
+If an icon is not correctly mapped to an app, search for it in the [mapping](/data.json) and [open an issue](../../issues/new) or [make a PR](../../compare) if it needs to be updated. 
 
 ## Build debug APK
 
