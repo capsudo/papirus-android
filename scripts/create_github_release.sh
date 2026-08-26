@@ -168,5 +168,5 @@ mv "$temporary_update_configuration_file" "$UPDATE_CONFIGURATION_FILE"
 # Commit and push it to master so it is available at URL checked by CandyBar check-update
 git add "$UPDATE_CONFIGURATION_FILE"
 # Publish config in follow-up commit so it never points at APK before GitHub upload succeeds.
-git commit -m "Update in-app update metadata for $release_tag"
+git commit -m "update after release $release_tag published"
 git push origin "$UPDATE_CONFIGURATION_BRANCH"

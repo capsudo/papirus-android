@@ -56,7 +56,7 @@ Notes:
 - Icons are sourced from `Papirus/64x64/apps`.
 - The icon names are converted to Android resource names: it adds `apps_`, changes uppercase letters to lowercase and changes punctuation to `_`. eg. `firefox-focus.svg` => `apps_firefox_focus.svg`.
 - Existing icons that are not present in the update are not deleted.
-- A (shallow) checkout of papirus-icon-theme is storead in `.cache/`, so [papirus-icon-theme repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) is only cloned once on the first run, next runs only downloads new icon changes.
+- A (shallow) checkout of papirus-icon-theme is stored in `.cache/`, so [papirus-icon-theme repo](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme) is only cloned once on the first run, next runs only downloads new icon changes.
 - VSC (VS Code & Codium) task available.
 
 ## Icon mappings
@@ -95,7 +95,7 @@ It takes those generated PNG/XML resources plus the Android app code and compile
 
 Notes:
 - VSC task available.
-- Nix shell provids required dependencies: Java 11, Android API 31, Android build tools...
+- Nix shell provides required dependencies: Java 11, Android API 31, Android build tools...
 
 ## Assemble release APK
 
@@ -134,17 +134,17 @@ Notes:
 
    Notes:
    - VSC task available.
-   - Nix shell provids required dependencies: Java 11, Android API 31, Android build tools...
+   - Nix shell provides required dependencies: Java 11, Android API 31, Android build tools...
 
 ## Create GitHub release
 
 1. Version bump in [app/build.gradle](/app/build.gradle) then commit this change.
 
-2. Create git tag (name and messsage) on this commit then push.
+2. Create git tag (name and message) on this commit then push.
 
 3. Publish on GitHub
 
-   Checkout `master`, because CandyBar checks `update.json` from that branch.
+   Checkout `master`, because CandyBar checks `update.json` from that branch and script therefore commits and pushes this file on master (see below).
 
    ```bash
    scripts/create_github_release.sh
