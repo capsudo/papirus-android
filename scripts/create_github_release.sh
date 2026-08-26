@@ -69,6 +69,24 @@ if [ "$remote_tag_commit" != "$tag_commit" ]; then
     fail "$release_tag on origin does not match local release tag"
 fi
 
+# GitHub CLI needs owner/repository when no default repository is configured.
+origin_repository_url="$(git remote get-url origin 2>/dev/null || true)"
+case "$origin_repository_url" in
+    https://github.com/*)
+        github_repository="${origin_repository_url#https://github.com/}"
+        ;;
+    git@github.com:*)
+        github_repository="${origin_repository_url#git@github.com:}"
+        ;;
+    ssh://git@github.com/*)
+        github_repository="${origin_repository_url#ssh://git@github.com/}"
+        ;;
+    *)
+        fail "origin must be a github.com owner/repository URL"
+        ;;
+esac
+github_repository="${github_repository%.git}"
+
 if ! command -v gh >/dev/null; then
     fail "GitHub CLI is missing; enter Nix shell again after pulling this change"
 fi
@@ -78,7 +96,7 @@ if ! gh auth status >/dev/null 2>&1; then
 fi
 
 # Avoid replacing an existing release asset by accident.
-if gh release view "$release_tag" >/dev/null 2>&1; then
+if gh release view "$release_tag" --repo "$github_repository" >/dev/null 2>&1; then
     fail "GitHub release $release_tag already exists"
 fi
 
@@ -106,6 +124,7 @@ fi
 
 printf 'Creating GitHub release %s with %s\n' "$release_tag" "${release_apk_path##*/}"
 gh release create "$release_tag" "$release_apk_path" \
+    --repo "$github_repository" \
     --title "$release_tag" \
     --notes "$release_notes" \
     --verify-tag

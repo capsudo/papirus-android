@@ -150,4 +150,5 @@ Notes:
 
    Notes:
    - it uses `gh` CLI tool, must be installed (included in nix shell)
+   - script gets GitHub owner/repository from git `origin`, so `gh repo set-default` is not needed.
    - VSC tasks available.
