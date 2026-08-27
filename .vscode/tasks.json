@@ -41,10 +41,30 @@
       "label": "Create GitHub release",
       "type": "shell",
       "command": "${workspaceFolder}/scripts/create_github_release.sh",
+      "args": [
+        "--release-title",
+        "${input:releaseTitle}",
+        "--release-message",
+        "${input:releaseMessage}"
+      ],
       "options": {
         "cwd": "${workspaceFolder}"
       },
       "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "releaseTitle",
+      "type": "promptString",
+      "description": "Release title and Android versionName (example: 20260801.4)",
+      "default": ""
+    },
+    {
+      "id": "releaseMessage",
+      "type": "promptString",
+      "description": "Release message (use \\n for each new line)",
+      "default": ""
     }
   ]
 }

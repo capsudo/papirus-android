@@ -138,24 +138,25 @@ Notes:
 
 ## Create GitHub release
 
-1. Version bump in [app/build.gradle](/app/build.gradle) then commit this change.
+Checkout `master` first, because CandyBar checks `update.json` from that branch and script therefore commits and pushes this file on master (see below), then run the script:
 
-2. Create git tag (name and message) on this commit then push.
+```bash
+scripts/create_github_release.sh
+```
 
-3. Publish on GitHub
+The script checks that the worktree is clean, `master` is checked out, requested tag/release does not exist and GitHub authentication works. It then:
 
-   Checkout `master`, because CandyBar checks `update.json` from that branch and script therefore commits and pushes this file on master (see below).
-
-   ```bash
-   scripts/create_github_release.sh
-   ```
-   The script first checks if worktree is clean, if checked out branch is master, if local and origin tags match, if APK metadata matches Gradle version and if GitHub release does not already exist.
-
-   If so it creates a GitHub release with tag name and title from `v<versionName>` and notes from its tag message.
-
-   After release is successfully published on GitHub, it updates `update.json` (see [Update](#update)), commits it and pushes that commit to `master`.
+0. prompts for a _release title_ and _release message_:
+   - _release title_: Android `versionName`, GitHub release title and Git tag (prefixed by "v", for example, `20260801.4` creates tag `v20260801.4`).
+   - _release message_: Git tag message, GitHub release notes, first-launch "What's new" message and update-check notes.
+1. increments `versionCode`, sets `versionName` to _release title_, and updates [changelog.xml](/app/src/main/res/values/changelog.xml) with _release message_, then commits these two files;
+2. builds the release APK so its metadata (embedded version and filename) match the new tag;
+3. creates and pushes annotated tag named `v`_release title_ with message _release message_;
+4. publishes the GitHub release; and
+5. updates `update.json`, commits it and pushes the commit to `master`.
 
    Notes:
+   - use `\n` for to add new lines in Release message:
    - it uses `gh` CLI tool, must be installed (included in nix shell)
    - script gets GitHub owner/repository from git `origin`, so `gh repo set-default` is not needed.
    - VSC tasks available.
