@@ -10,7 +10,12 @@
     * <u> for Underline
     * <a href="linkUrl">Link Text</a> for links -->
     <string-array name="changelog">
-        <item>Added 102 icons</item>
+        <item>- icons from papirus-icon-theme v20260801
+- mappings for every icon
+- updated update URL
+- updated candybar
+- fix icon browser
+- up to date startup changelog</item>
     </string-array>
 
 </resources>
