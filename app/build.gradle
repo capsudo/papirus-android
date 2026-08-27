@@ -16,7 +16,6 @@ apply plugin: 'com.android.application'
 // Note: file is ignored by Git.
 def releaseSigningPropertiesFile = rootProject.file('signing.properties')
 def releaseSigningProperties = new Properties()
-def applicationReleaseVersionName = '20260801.2'
 
 if (releaseSigningPropertiesFile.exists()) {
     releaseSigningPropertiesFile.withInputStream { signingPropertiesInputStream ->
@@ -33,8 +32,8 @@ android {
         applicationId "io.github.PapirusDevelopmentTeam.papirus_icons"
         minSdkVersion rootProject.ext.MinSdk
         targetSdkVersion rootProject.ext.TargetSdk
-        versionCode 13
-        versionName applicationReleaseVersionName
+        versionCode 14
+        versionName "20260801.3"
     }
 
     bundle {
@@ -77,7 +76,8 @@ androidComponents {
     onVariants(selector().all()) { variant ->
         // Use app version instead of version code. Example: papirus-android-v20260801.2-debug.apk.
         variant.outputs.forEach { output ->
-            output.outputFileName.set("${rootProject.name}-v${applicationReleaseVersionName}-${variant.name}.apk")
+            def applicationVariantVersionName = output.versionName.get()
+            output.outputFileName.set("${rootProject.name}-v${applicationVariantVersionName}-${variant.name}.apk")
         }
     }
 }
