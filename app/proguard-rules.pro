@@ -49,3 +49,9 @@
 # Glide
 -keep public class * extends com.bumptech.glide.module.AppGlideModule
 -keep class com.bumptech.glide.GeneratedAppGlideModuleImpl
+
+# CandyBar reads app drawable names from drawable.xml using reflection at runtime.
+# Keep fields and names because R8 cannot trace those string lookups.
+-keepclassmembers class io.github.PapirusDevelopmentTeam.papirus_icons.R$drawable {
+    public static <fields>;
+}
