@@ -1,8 +1,8 @@
 {
-  "latestVersion": "20260801.2",
-  "latestVersionCode": 13,
-  "url": "https://github.com/capsudo/papirus-android/releases/latest/download/papirus-android-v20260801.2-release.apk",
+  "latestVersion": "20260801.3",
+  "latestVersionCode": 14,
+  "url": "https://github.com/capsudo/papirus-android/releases/latest/download/papirus-android-v20260801.3-release.apk",
   "releaseNotes": [
-    "icons from papirus-icon-theme v20260801 with mappings for every icon and updated update URL"
+    "icons from papirus-icon-theme v20260801, mappings for every icon, updated update URL, updated candybar"
   ]
 }
